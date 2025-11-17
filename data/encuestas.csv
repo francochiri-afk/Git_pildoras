@@ -1,0 +1,11 @@
+Fecha,Encuesta,Estrato,Sexo,Edad,Nivel Educativo,Cantidad de Integrantes en el Hogar,Imagen del Candidato,Voto,Voto Anterior
+2024-01-01,E001,Bajo,masculino,32,Universitario,3,65,Candidato A,Candidato B
+2024-01-01,E002,Medio,femenino,48,Secundario,4,58,Candidato B,Candidato B
+2024-01-05,E003,Alto,femenino,27,Universitario,2,72,Candidato A,Candidato A
+2024-01-05,E004,Bajo,masculino,55,Primario,5,45,Candidato C,Candidato A
+2024-01-10,E005,Medio,masculino,61,Secundario,2,38,Candidato B,Indeciso
+2024-01-10,E006,Alto,femenino,36,Universitario,3,80,Candidato A,Candidato A
+2024-01-15,E007,Medio,femenino,29,Universitario,4,70,Candidato A,Candidato B
+2024-01-15,E008,Bajo,masculino,42,Secundario,5,50,Indeciso,Candidato B
+2024-01-20,E009,Alto,masculino,37,Universitario,3,68,Candidato A,Candidato A
+2024-01-20,E010,Bajo,femenino,47,Primario,6,55,Candidato B,Candidato A
