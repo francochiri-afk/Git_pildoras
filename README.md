@@ -1,12 +1,21 @@
 # Git_pildoras
 
-## Tracking electoral en Python
+## Tracking electoral en Python (notebook)
 
-Este repositorio incluye un ejemplo de seguimiento electoral escrito en
-Python utilizando `pandas`, `matplotlib` y `seaborn`. El objetivo es
-mostrar cómo limpiar los datos de una encuesta, aplicar una **función de
-ventana** para suavizar la intención de voto de un candidato y
-visualizar los resultados.
+Este repositorio incluye un notebook (`tracking_electoral.ipynb`) para
+seguir la evolución de la intención de voto y la imagen de un candidato
+en Argentina. El flujo:
+
+1. Carga múltiples CSV de encuestas (uno por mes) para simular el paso
+   del tiempo.
+2. Limpia y normaliza las variables clave (`Estrato` como bajo/medio/
+   alto, `Voto` con el formato `Candidato A/B/C` y sexos homogéneos).
+3. Pondera la muestra con una distribución simplificada basada en el
+   Censo 2022 (sexo x grupo etario x estrato socioeconómico derivado de
+   la canasta básica total).
+4. Aplica una ventana móvil para suavizar series y genera gráficos de
+   la imagen de *Candidato A* y de la intención de voto de tres
+   candidatos.
 
 ### Requisitos
 
@@ -23,10 +32,9 @@ pip install pandas matplotlib seaborn
 
 ### Estructura de datos
 
-El archivo `data/encuestas.csv` contiene una muestra con las siguientes
-columnas (todas las observaciones fueron estratificadas como **bajo**,
-**medio** o **alto** de acuerdo con la cobertura de la canasta básica
-total del hogar):
+En `data/` encontrarás varios archivos de ejemplo (`encuestas_2024-01.csv`,
+`encuestas_2024-02.csv`, `encuestas_2024-03.csv`) con las siguientes
+columnas estratificadas (bajo/medio/alto en función de la canasta básica):
 
 - Fecha
 - Encuesta
@@ -36,22 +44,16 @@ total del hogar):
 - Nivel Educativo
 - Cantidad de Integrantes en el Hogar
 - Imagen del Candidato
-- Voto
+- Voto (ejemplo: `Candidato A`, `Candidato B`, `Candidato C`)
 - Voto Anterior
-  - Los valores de voto siguen el formato `Candidato A`, `Candidato B`,
-    `Candidato C`, etc.
 
-### Ejecución
+Puedes agregar nuevos archivos siguiendo el patrón `encuestas_YYYY-MM.csv`
+para extender la serie temporal.
 
-```bash
-python tracking_electoral.py
-```
+### Ejecución en VSCode
 
-La ejecución imprime en consola:
-
-1. Indicadores sociodemográficos (imagen promedio e intención de voto por
-   fecha, sexo y rango etario).
-2. Serie temporal de intención de voto suavizada mediante una ventana
-   móvil configurable.
-3. La ruta del gráfico exportado automáticamente (por defecto en
-   `output/tracking.png`).
+1. Abre `tracking_electoral.ipynb` en VSCode.
+2. Selecciona un kernel de Python 3.10+ con las dependencias instaladas.
+3. Ejecuta las celdas en orden. Se generarán las imágenes
+   `outputs/imagen_candidato.png` e `outputs/intencion_voto.png` con la
+   evolución ponderada y suavizada de la serie.
