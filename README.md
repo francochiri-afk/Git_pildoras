@@ -1,21 +1,18 @@
 # Git_pildoras
 
-## Tracking electoral en Python (notebook)
+## Tracking electoral con ponderación censal 2022
 
-Este repositorio incluye un notebook (`tracking_electoral.ipynb`) para
-seguir la evolución de la intención de voto y la imagen de un candidato
-en Argentina. El flujo:
+Este repositorio incluye un notebook (`tracking_electoral.ipynb`) que sigue la evolución de la imagen y la intención de voto de candidatos presidenciales en Argentina. El flujo ahora está alineado con los datos del Censo 2022 y con estratificación por provincias.
 
-1. Carga múltiples CSV de encuestas (uno por mes) para simular el paso
-   del tiempo.
-2. Limpia y normaliza las variables clave (`Estrato` como bajo/medio/
-   alto, `Voto` con el formato `Candidato A/B/C` y sexos homogéneos).
-3. Pondera la muestra con una distribución simplificada basada en el
-   Censo 2022 (sexo x grupo etario x estrato socioeconómico derivado de
-   la canasta básica total).
-4. Aplica una ventana móvil para suavizar series y genera gráficos de
-   la imagen de *Candidato A* y de la intención de voto de tres
-   candidatos.
+### Flujo
+1. Carga múltiples CSV de encuestas (`data/encuestas_YYYY-MM.csv`) para simular distintas olas temporales.
+2. Limpia y normaliza los campos clave:
+   - `Estrato` se interpreta como provincia (códigos oficiales 01-24). Se corrigen nombres parciales como `cord` → `CORDOBA`.
+   - `Sexo` acepta prefijos como `fe` o `mu` para femenino.
+   - `Edad` se imputa con la mediana, se convierte a entero y se descartan menores de 16 o mayores de 95.
+3. Pondera cada registro contra la distribución censal (`data/censo_2022_distribucion.csv`, población por provincia × sexo × grupo de edad). No hay valores hardcodeados: cualquier cambio en el CSV recalcula los pesos.
+4. Calcula medias ponderadas sin suavizado para imagen e intención de voto del candidato objetivo y genera gráficos en `outputs/`.
+5. Ejecuta tests de hipótesis y regresiones (OLS para imagen y logística para intención de voto) sobre variables sociodemográficas.
 
 ### Requisitos
 
@@ -23,37 +20,25 @@ en Argentina. El flujo:
 - pandas
 - matplotlib
 - seaborn
+- statsmodels
+- scipy
 
-Instalar dependencias:
+Instala dependencias con:
 
 ```bash
-pip install pandas matplotlib seaborn
+pip install pandas matplotlib seaborn statsmodels scipy
 ```
 
-### Estructura de datos
+### Datos de ejemplo
 
-En `data/` encontrarás varios archivos de ejemplo (`encuestas_2024-01.csv`,
-`encuestas_2024-02.csv`, `encuestas_2024-03.csv`) con las siguientes
-columnas estratificadas (bajo/medio/alto en función de la canasta básica):
+En `data/` se incluyen:
+- `censo_2022_distribucion.csv`: distribución poblacional aproximada del Censo 2022 por provincia (código y nombre), sexo y grupo de edad (`18-29`, `30-44`, `45-59`, `60+`).
+- Tres olas de encuesta (`encuestas_2024-01.csv`, `encuestas_2024-02.csv`, `encuestas_2024-03.csv`) con valores de provincia escritos de forma parcial o abreviada para demostrar la normalización.
 
-- Fecha
-- Encuesta
-- Estrato
-- Sexo
-- Edad
-- Nivel Educativo
-- Cantidad de Integrantes en el Hogar
-- Imagen del Candidato
-- Voto (ejemplo: `Candidato A`, `Candidato B`, `Candidato C`)
-- Voto Anterior
-
-Puedes agregar nuevos archivos siguiendo el patrón `encuestas_YYYY-MM.csv`
-para extender la serie temporal.
+Puedes agregar nuevas olas siguiendo el patrón `encuestas_YYYY-MM.csv`; el notebook recalculará pesos y resultados automáticamente a partir de los CSV.
 
 ### Ejecución en VSCode
 
 1. Abre `tracking_electoral.ipynb` en VSCode.
 2. Selecciona un kernel de Python 3.10+ con las dependencias instaladas.
-3. Ejecuta las celdas en orden. Se generarán las imágenes
-   `outputs/imagen_candidato.png` e `outputs/intencion_voto.png` con la
-   evolución ponderada y suavizada de la serie.
+3. Ejecuta las celdas en orden. Se guardarán `outputs/imagen_ponderada.png` y `outputs/intencion_ponderada.png`, además de los resúmenes de regresiones e hipótesis en la salida de consola.
