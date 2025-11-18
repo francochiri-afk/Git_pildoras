@@ -1,0 +1,17 @@
+Fecha,Encuesta,Estrato,Sexo,Edad,Nivel Educativo,Cantidad de Integrantes en el Hogar,Imagen del Candidato,Voto,Voto Anterior
+2024-02-12,ENC-2024-02-001,chac,hombre,60,Secundario completo,1,37,Candidato C,Candidato A
+2024-02-14,ENC-2024-02-002,chac,fem,43,Secundario completo,3,83,Candidato A,Candidato A
+2024-02-14,ENC-2024-02-003,ba,masc,22,Secundario completo,4,43,Candidato C,Candidato A
+2024-02-14,ENC-2024-02-004,ba,fe,43,Secundario completo,3,34,Candidato A,Candidato A
+2024-02-14,ENC-2024-02-005,mza,mu,43,Universitario completo,1,62,Candidato B,Candidato A
+2024-02-14,ENC-2024-02-006,caba,hombre,43,Universitario completo,3,52,Candidato C,Candidato B
+2024-02-14,ENC-2024-02-007,cord,hombre,96,Universitario completo,1,80,Candidato C,Candidato A
+2024-02-12,ENC-2024-02-008,tucu,fe,30,Secundario completo,5,58,Candidato C,Candidato A
+2024-02-12,ENC-2024-02-009,neuquén,hombre,43,Secundario incompleto,6,52,Candidato B,Candidato C
+2024-02-13,ENC-2024-02-010,cord,fe,25,Secundario completo,4,77,Candidato A,Candidato B
+2024-02-14,ENC-2024-02-011,ba,fe,30,Universitario completo,2,78,Candidato B,Candidato B
+2024-02-14,ENC-2024-02-012,mza,hombre,37,Universitario completo,6,49,Candidato B,Candidato C
+2024-02-13,ENC-2024-02-013,caba,fem,72,Universitario completo,6,51,Candidato A,Candidato A
+2024-02-12,ENC-2024-02-014,neuquén,varon,25,Universitario incompleto,1,55,Candidato C,Candidato C
+2024-02-13,ENC-2024-02-015,ba,masc,51,Secundario completo,3,74,Candidato A,Candidato B
+2024-02-14,ENC-2024-02-016,neuquén,fe,72,Secundario completo,1,61,Candidato B,Candidato B
